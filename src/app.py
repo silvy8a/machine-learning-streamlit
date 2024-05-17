@@ -3,7 +3,7 @@ from pickle import load
 import streamlit as st
 
 #Loading the model
-model = load(open("/workspaces/machine-learning-streamlit/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav", "rb"))
+model = load(open("/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav", "rb"))
 
 class_dict = {
     "0": "Non diabetic",
@@ -33,6 +33,8 @@ def main():
     number7 = st.number_input("Age", value=None, placeholder="Type a number...")
 
     if st.button("Predict"):
+
+        
         prediction = str(model.predict([[number1, number2, number3, number4, number5, number6, number7]])[0])
         pred_class = class_dict[prediction]
         st.write("Prediction:", pred_class)
