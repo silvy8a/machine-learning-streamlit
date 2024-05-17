@@ -3,7 +3,11 @@ from pickle import load
 import streamlit as st
 
 #Loading the model
-model = load(open("/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav", "rb"))
+model_path = "/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
+with open(model_path, "rb") as model_file:
+    model = pickle.load(model_file)
+
+
 
 class_dict = {
     "0": "Non diabetic",
