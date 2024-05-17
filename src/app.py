@@ -2,6 +2,7 @@ from pickle import load
 
 import streamlit as st
 
+
 #Loading the model
 model_path = "/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
 with open(model_path, "rb") as model_file:
