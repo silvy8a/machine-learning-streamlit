@@ -2,7 +2,7 @@ import os
 import pickle
 import streamlit as st
 
-# Adjust the model directory path based on the current working directory
+# Define the model directory and file name
 model_dir = "../models"
 model_filename = "tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.pkl"
 model_path = os.path.join(model_dir, model_filename)
@@ -74,5 +74,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
