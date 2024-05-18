@@ -1,28 +1,9 @@
 import os
 import pickle
 import streamlit as st
+import joblib
 
-# Define the model path
-model_path = "../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
-
-# Debugging information
-current_working_directory = os.getcwd()
-print(f"Current working directory: {current_working_directory}")
-print(f"Absolute model path: {model_path}")
-
-# Check if the model file exists
-if not os.path.isfile(model_path):
-    st.error(f"Model file not found at path: {model_path}")
-    st.stop()
-
-# Loading the model
-try:
-    with open(model_path, "rb") as model_file:
-        model = pickle.load(model_file)
-    st.success("Model loaded successfully.")
-except Exception as e:
-    st.error(f"An error occurred while loading the model: {e}")
-    st.stop()
+model = joblib.load('../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav')
 
 class_dict = {
     "0": "Non diabetic",
