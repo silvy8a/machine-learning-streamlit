@@ -3,26 +3,16 @@ import pickle
 import streamlit as st
 
 # Define the model path
-model_path = "../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
+model_path = "/opt/render/project/src/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
 
 # Debugging information
 current_working_directory = os.getcwd()
 print(f"Current working directory: {current_working_directory}")
-print(f"Relative model path: {model_path}")
-absolute_model_path = os.path.abspath(model_path)
-print(f"Absolute model path: {absolute_model_path}")
-
-# Check if the models directory exists
-models_dir = os.path.dirname(absolute_model_path)
-if os.path.exists(models_dir):
-    print(f"Contents of the models directory ({models_dir}):")
-    print(os.listdir(models_dir))
-else:
-    print(f"Directory does not exist: {models_dir}")
+print(f"Absolute model path: {model_path}")
 
 # Check if the model file exists
 if not os.path.isfile(model_path):
-    st.error(f"Model file not found at path: {absolute_model_path}")
+    st.error(f"Model file not found at path: {model_path}")
     st.stop()
 
 # Loading the model
