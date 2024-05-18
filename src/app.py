@@ -3,7 +3,7 @@ import pickle
 import streamlit as st
 
 # Define the model path
-model_path = "/opt/render/project/src/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
+model_path = "../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
 
 # Debugging information
 current_working_directory = os.getcwd()
