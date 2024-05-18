@@ -3,7 +3,7 @@ import pickle
 import streamlit as st
 
 # Define the model path
-model_path = "/workspaces/machine-learning-streamlit/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
+model_path = "models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
 
 # Debugging information
 current_working_directory = os.getcwd()
@@ -12,10 +12,13 @@ print(f"Relative model path: {model_path}")
 absolute_model_path = os.path.abspath(model_path)
 print(f"Absolute model path: {absolute_model_path}")
 
-# List the contents of the models directory
+# Check if the models directory exists
 models_dir = os.path.dirname(absolute_model_path)
-print(f"Contents of the models directory ({models_dir}):")
-print(os.listdir(models_dir))
+if os.path.exists(models_dir):
+    print(f"Contents of the models directory ({models_dir}):")
+    print(os.listdir(models_dir))
+else:
+    print(f"Directory does not exist: {models_dir}")
 
 # Check if the model file exists
 if not os.path.isfile(model_path):
