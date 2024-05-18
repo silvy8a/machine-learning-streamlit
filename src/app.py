@@ -2,7 +2,7 @@ import pickle
 import streamlit as st
 
 #Loading the model from pickle
-with open('../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.pkl', 'rb') as file:
+with open('../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.pkl') as file:
     model = pickle.load(file)
 
 class_dict = {
