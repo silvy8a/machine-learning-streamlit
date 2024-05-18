@@ -4,7 +4,7 @@ import streamlit as st
 
 
 #Loading the model
-model_path = "/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
+model_path = "/workspaces/machine-learning-streamlit/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
 
 try:
     with open(model_path, "rb") as model_file:
