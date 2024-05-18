@@ -1,4 +1,4 @@
-from pickle import load
+import pickle
 
 import streamlit as st
 
