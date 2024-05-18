@@ -1,3 +1,7 @@
+import streamlit as st
+import os
+import pickle
+
 # Define the model path
 model_path = "../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.pkl"
 
