@@ -16,10 +16,10 @@ if not os.path.isfile(model_path):
 try:
     with open(model_path, "rb") as file:
         model = pickle.load(file)
-    st.success("Model loaded successfully.")
+    #st.success("Model loaded successfully.")
 except Exception as e:
     st.error(f"An error occurred while loading the model: {e}")
-    st.stop()
+    #st.stop()
 
 # Rest of your Streamlit app...
 def main():
