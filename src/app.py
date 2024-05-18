@@ -2,8 +2,8 @@ import os
 import pickle
 import streamlit as st
 
-# Define the model directory and file name
-model_dir = "/opt/render/project/src/models"
+# Adjust the model directory path based on the current working directory
+model_dir = "../models"
 model_filename = "tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.pkl"
 model_path = os.path.join(model_dir, model_filename)
 
@@ -11,13 +11,22 @@ model_path = os.path.join(model_dir, model_filename)
 current_working_directory = os.getcwd()
 st.write(f"Current working directory: {current_working_directory}")
 
-st.write(f"Looking for model in: {model_dir}")
+# List contents of the parent directory to locate the models directory
+parent_dir = os.path.abspath(os.path.join(current_working_directory, os.pardir))
+st.write(f"Parent directory: {parent_dir}")
 try:
-    directory_contents = os.listdir(model_dir)
-    st.write("Directory contents:", directory_contents)
+    parent_dir_contents = os.listdir(parent_dir)
+    st.write("Parent directory contents:", parent_dir_contents)
 except FileNotFoundError as e:
-    st.error(f"Directory not found: {model_dir}")
+    st.error(f"Parent directory not found: {parent_dir}")
     st.stop()
+
+# Check if the model directory exists and list its contents
+if not os.path.isdir(model_dir):
+    st.error(f"Model directory not found: {model_dir}")
+    st.stop()
+else:
+    st.write(f"Model directory contents: {os.listdir(model_dir)}")
 
 # Check if the model file exists
 if not os.path.isfile(model_path):
@@ -65,4 +74,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
