@@ -1,9 +1,19 @@
-import pickle
-import streamlit as st
+# Define the model path
+model_path = "../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.pkl"
 
-#Loading the model from pickle
-with open('../models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.pkl') as file:
-    model = pickle.load(file)
+# Check if the model file exists
+if not os.path.isfile(model_path):
+    st.error(f"Model file not found at path: {model_path}")
+    st.stop()
+
+# Loading the model
+try:
+    with open(model_path, "rb") as model_file:
+        model = pickle.load(model_file)
+    st.success("Model loaded successfully.")
+except Exception as e:
+    st.error(f"An error occurred while loading the model: {e}")
+    st.stop()
 
 class_dict = {
     "0": "Non diabetic",
