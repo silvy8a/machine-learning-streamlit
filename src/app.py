@@ -1,22 +1,35 @@
+import os
 import pickle
-
 import streamlit as st
 
+# Define the model path
+model_path = "models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
 
-#Loading the model
-model_path = "/workspaces/machine-learning-streamlit/models/tree_classifier_crit-gini_maxdepth-5_minleaf-1_minsplit-2_8.sav"
+# Debugging information
+current_working_directory = os.getcwd()
+print(f"Current working directory: {current_working_directory}")
+print(f"Relative model path: {model_path}")
+absolute_model_path = os.path.abspath(model_path)
+print(f"Absolute model path: {absolute_model_path}")
 
+# List the contents of the models directory
+models_dir = os.path.dirname(absolute_model_path)
+print(f"Contents of the models directory ({models_dir}):")
+print(os.listdir(models_dir))
+
+# Check if the model file exists
+if not os.path.isfile(model_path):
+    st.error(f"Model file not found at path: {absolute_model_path}")
+    st.stop()
+
+# Loading the model
 try:
     with open(model_path, "rb") as model_file:
         model = pickle.load(model_file)
     st.success("Model loaded successfully.")
-except FileNotFoundError:
-    st.error(f"Model file not found at path: {model_path}")
-    st.stop()
 except Exception as e:
     st.error(f"An error occurred while loading the model: {e}")
     st.stop()
-
 
 class_dict = {
     "0": "Non diabetic",
@@ -26,9 +39,9 @@ class_dict = {
 # Application Configuration
 def main():
     st.title("Diabetes Prediction Model")
-    
+
     st.write("This predictor utilizes a Decision Tree model optimized with an accuracy of 74% to predict diabetes based on various health parameters. Please provide the following information:")
-    
+
     # Input fields with user guidance
     number1 = st.number_input("Number of Pregnancies", min_value=0, step=1, format="%d", help="Enter the number of times you've been pregnant.")
     st.divider()
